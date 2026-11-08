@@ -1,0 +1,16 @@
+# Square coils pack the tile more tightly than round ones, plus a small fan.
+name: rect_coils_fan
+mover:
+  type: cube_grid
+  params: {nx: 4, ny: 4, size_mm: 8, pitch_mm: 16}
+coil:
+  type: rect
+  params: {outer_x_mm: 24, outer_y_mm: 24, winding_width_mm: 9, height_mm: 12, awg: 26, turns: auto}
+tile:
+  layout: square
+  params: {n: 4, pitch_mm: 25}
+grid: {rows: 2, cols: 2}
+thermal: {h_conv_W_m2K: 35}   # small fan blowing across the coils
+operating: {gap_mm: 3}
+analysis: {cutoff_mm: 60}
+handoff: {fade_inner_mm: 30, fade_outer_mm: 55}

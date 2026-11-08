@@ -1,0 +1,16 @@
+# The 8-month demo table from the project scope: 3x3 identical tiles.
+# Slower to analyse (144 coils) - use xy_samples 3-4 while iterating.
+name: demo_3x3
+mover:
+  type: cube_grid
+  params: {nx: 4, ny: 4, size_mm: 8, pitch_mm: 16}
+coil:
+  type: round
+  params: {inner_diameter_mm: 5, outer_diameter_mm: 24, height_mm: 12, awg: 26, turns: auto}
+tile:
+  layout: square
+  params: {n: 4, pitch_mm: 25}
+grid: {rows: 3, cols: 3}
+operating: {gap_mm: 3}
+analysis: {cutoff_mm: 60, xy_samples: 4}
+handoff: {fade_inner_mm: 30, fade_outer_mm: 55}

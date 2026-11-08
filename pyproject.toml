@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "maglev-sim"
+version = "0.1.0"
+description = "Simulation backbone for the 2D MagLev Tile project: coil/magnet design, force maps, current allocation, control and tile handoff."
+requires-python = ">=3.10"
+dependencies = [
+    "magpylib>=5.1",
+    "numpy>=1.26",
+    "scipy>=1.11",
+    "matplotlib>=3.8",
+    "pyyaml>=6.0",
+    "pandas>=2.0",
+    "tqdm>=4.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "nbformat>=5", "nbconvert>=7", "ipykernel>=6"]
+
+[project.scripts]
+maglev-design = "maglev_sim.cli:design_main"
+maglev-sweep = "maglev_sim.cli:sweep_main"
+maglev-sim = "maglev_sim.cli:simulate_main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

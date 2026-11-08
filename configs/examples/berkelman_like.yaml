@@ -1,0 +1,23 @@
+# Sanity check against the literature (paper 1, Berkelman & Dzadovsky 2013):
+# 250 g platform with two disk magnets over 16 coils at 35 mm pitch,
+# ~9-10 ohm coils limited to 3 A, levitation over ~25 mm of height.
+# Coil and magnet sizes are OUR GUESSES (the paper gives pitch, R, I and mass) -
+# so expect the same ballpark, not the same numbers. See docs/validation.md.
+name: berkelman_like
+mover:
+  type: disk_pair
+  params: {diameter_mm: 25.4, height_mm: 12.7, spacing_mm: 45, polarities: [1, 1], grade: N42}
+  extra_mass_g: 153.4        # brings the platform to ~250 g
+coil:
+  type: round
+  params: {inner_diameter_mm: 8, outer_diameter_mm: 32, height_mm: 25, awg: 26, turns: auto}
+tile:
+  layout: square
+  params: {n: 4, pitch_mm: 35}
+grid: {rows: 1, cols: 1}
+electrical: {max_current_A: 3.0, supply_voltage_V: 36}
+operating:
+  gap_mm: 10
+  control_axes: [fx, fy, fz, tx, ty]
+analysis: {cutoff_mm: 90, xy_samples: 5, gaps_mm: [5, 10, 15, 20, 25]}
+handoff: {fade_inner_mm: 200, fade_outer_mm: 250}   # single tile: all coils always active

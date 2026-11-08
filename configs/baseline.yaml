@@ -1,0 +1,89 @@
+# Baseline design - the team's shared starting point.
+# Copy this file, rename it, change what you want to try, and run:
+#   python scripts/run_design.py configs/<your_file>.yaml
+# Units are in the key names (_mm, _g, _A, ...). Anything left out uses the
+# defaults in src/maglev_sim/config.py.
+
+name: baseline
+description: >
+  4x4 checkerboard of 8 mm cube magnets over 2x2 tiles of 4x4 round air-core
+  coils at 25 mm pitch. Chosen as a starting point because it hovers everywhere
+  with ~2.7x lift margin at a 3 mm gap; coil heating is its known weak spot.
+
+mover:
+  type: cube_grid            # disk | disk_pair | disk_grid | cube_grid | halbach_1d | halbach_2d
+  params:
+    nx: 4
+    ny: 4
+    size_mm: 8               # cube side
+    pitch_mm: 16             # centre-to-centre spacing (16 = one cube gap between magnets)
+    grade: N42
+  extra_mass_g: 0            # frame / payload / sensor magnets on top of the magnets
+
+coil:
+  type: round                # round | rect
+  params:
+    inner_diameter_mm: 5
+    outer_diameter_mm: 24
+    height_mm: 12
+    awg: 26                  # wire gauge (or wire_diameter_mm)
+    turns: auto              # auto = fill the window at fill_factor 0.55; or a number
+  mesh: {radial: 3, axial: 3, segments: 32}
+
+tile:
+  layout: square             # square | offset | custom
+  params:
+    n: 4                     # 4x4 coils per tile
+    pitch_mm: 25             # coil spacing (also sets tile size: n * pitch)
+
+grid:
+  rows: 2
+  cols: 2
+
+electrical:
+  max_current_A: 3.0
+  supply_voltage_V: 24
+
+thermal:
+  ambient_C: 25
+  h_conv_W_m2K: 12           # still air ~5-15, small fan ~25-50
+  max_coil_temp_C: 100
+
+operating:
+  gap_mm: 3                  # coil top -> magnet bottom (includes any cover plate)
+  control_axes: [fx, fy, fz, tx, ty]
+
+analysis:
+  xy_samples: 7
+  cutoff_mm: 60
+
+handoff:
+  fade_inner_mm: 30
+  fade_outer_mm: 55
+  hysteresis_mm: 5
+  link_delay_steps: 1
+
+control:
+  rate_Hz: 1000
+  bandwidth_Hz: [8, 8, 12]
+  damping: 0.8
+
+tolerances:
+  values:                    # assumed build tolerances (+/-); see docs/tolerances.md
+    magnet_br_pct: 3
+    magnet_position_mm: 0.2
+    magnet_angle_deg: 2
+    coil_position_mm: 0.3
+    coil_height_mm: 0.3
+    coil_turns_pct: 2
+    tile_offset_mm: 0.5
+    gap_mm: 0.5
+    mover_tilt_deg: 1
+    sensor_offset_mm: 0.3
+  thresholds:                # acceptable impact (p95 over random builds) - agree these as a team
+    force_error_pct: 10
+    lateral_accel_g: 0.1
+    torque_error_pct: 10
+    current_increase_pct: 15
+    lift_margin_loss_pct: 15
+  trials: 12

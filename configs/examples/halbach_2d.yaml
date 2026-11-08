@@ -1,0 +1,18 @@
+# The proposal's 2D Halbach mover (Jansen 2008 style) on the baseline coils.
+# At this size it does WORSE than the simple checkerboard - a good first
+# investigation: try size_mm, n, coil pitch (Kuijpers 2023: pick magnet pitch first,
+# then size coils to it).
+name: halbach_2d
+mover:
+  type: halbach_2d
+  params: {n: 5, size_mm: 8, grade: N42}
+coil:
+  type: round
+  params: {inner_diameter_mm: 5, outer_diameter_mm: 24, height_mm: 12, awg: 26, turns: auto}
+tile:
+  layout: square
+  params: {n: 4, pitch_mm: 25}
+grid: {rows: 2, cols: 2}
+operating: {gap_mm: 3}
+analysis: {cutoff_mm: 60}
+handoff: {fade_inner_mm: 30, fade_outer_mm: 55}

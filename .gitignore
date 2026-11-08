@@ -1,0 +1,8 @@
+.venv/
+__pycache__/
+*.egg-info/
+.cache/
+results/*
+!results/.gitkeep
+.ipynb_checkpoints/
+.pytest_cache/
