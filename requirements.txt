@@ -1,0 +1,4 @@
+magpylib
+numpy
+scipy
+matplotlib
