@@ -1,0 +1,30 @@
+
+magpylib SETTINGS
+----------------------------------------
+meshing: 500
+
+COIL CONFIGURATION
+----------------------------------------
+Number of coils (#): 16
+Coil height (m): 0.03
+inner diameter (m): 0.0125
+outer diameter (m): 0.025
+number of turns (#): 1000
+numbr of loops (#): 50
+current (A): -3.0
+
+PLATFORM
+----------------------------------------
+magnet diameter (m): 0.0375
+magnet height (m): 0.0125
+magnet polarization (T): 1.2
+magnet separation (m): 0.056
+air gap (m): 0.015
+mass (kg): 0.25
+weight (N): 2.4525
+
+RESULTS
+----------------------------------------
+Forces (N): [-2.76376144e-13  4.21003510e-13  2.55353506e+00]
+Torques (Nm): [ 8.11850587e-16 -7.23726634e-15  5.60554370e-04]
+Net Force in the z direction (N): 0.1010350640988924
