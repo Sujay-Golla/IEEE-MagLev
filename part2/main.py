@@ -5,6 +5,7 @@ import numpy as np
 # SIMULATION CONFIG
 ITERATIONS = 50 # num of sim iterations ()
 MESHING = 100
+DT = 0.001  # 1 ms time step
 g = 9.81
 
 # COIL CONFIG
@@ -59,6 +60,8 @@ print("SIMULATION SETTINGS")
 print("----------------------------------------")
 print(f"iterations: {ITERATIONS}")
 print(f"meshing: {MESHING}")
+print(f"timestep [s]: {DT}")
+print(f"standard gravity [m/s^2]: {g}")
 print()
 print("COIL CONFIGURATION")
 print("----------------------------------------")
@@ -81,7 +84,6 @@ print(f"mass (kg): {MASS}")
 print(f"weight (N): {WEIGHT}")
 
 # sim calcs
-DT = 0.001  # 1 ms time step
 MAGNET_Z = COIL_HEIGHT + AIR_GAP + MAGNET_HEIGHT / 2
 magnets = []
 initial_position = np.array([0.0, 0.0, MAGNET_Z])
